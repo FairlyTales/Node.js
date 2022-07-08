@@ -6,7 +6,7 @@ const router = express.Router();
 router.get('/product-form', (req, res) => {
 	console.log(req.body);
 
-	res.send(
+	res.status(200).send(
 		`<form action="/product" method="post">
 			<input type="text" name="title">
 			<button type="submit">submit</button>
@@ -17,7 +17,7 @@ router.get('/product-form', (req, res) => {
 router.post('/add-product', async (req, res) => {
 	console.log(req.body);
 
-	res.send(`product ${req.body.title} added`);
+	res.status(200).send(`product ${req.body.title} added`);
 	await fs.writeFile('./database/products.txt', req.body.title, (err) => {
 		console.log(err)
 	})
