@@ -4,6 +4,13 @@ const express = require('express');
 
 const app = express();
 
-const server = http.createServer(app)
+app.use((res, req, next) => {
+	console.log('res')
+	console.log(res)
+	console.log('req')
+	console.log(req)
 
-server.listen(4000)
+	next();
+});
+
+app.listen(4000);
