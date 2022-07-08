@@ -3,7 +3,7 @@ const fs = require("fs");
 
 const router = express.Router();
 
-router.get('/product-form', (req, res) => {
+router.get('/add-product', (req, res) => {
 	console.log(req.body);
 
 	res.status(200).send(
