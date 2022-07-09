@@ -1,5 +1,4 @@
-// TODO: move products to Model
-const products = [];
+const Product = require('../models/product');
 
 const getAddProduct = (req, res, next) => {
 	res.render('add-product', {
@@ -12,18 +11,17 @@ const getAddProduct = (req, res, next) => {
 }
 
 const postAddProduct = (req, res, next) => {
-	const product = req.body;
+	const productDto = req.body;
+	const newProduct = new Product(productDto.title, productDto.price, productDto.description);
 
-	products.push({
-		title: product.title,
-		price: product.price,
-		description: product.description
-	});
+	newProduct.save();
 
 	res.redirect('/');
 }
 
 const getProducts = (req, res, next) => {
+	const products = Product.getAllProducts();
+
 	res.render('shop', {
 		pageTitle: 'Shop',
 		path: '/',
