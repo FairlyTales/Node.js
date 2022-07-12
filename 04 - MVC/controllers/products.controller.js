@@ -10,25 +10,25 @@ const getAddProduct = (req, res, next) => {
 	});
 }
 
-const postAddProduct = (req, res, next) => {
+const postAddProduct = async (req, res, next) => {
 	const productDto = req.body;
 	const newProduct = new Product(productDto.title, productDto.price, productDto.description);
 
-	newProduct.save();
+	await newProduct.save();
 
 	res.redirect('/');
 }
 
-const getProducts = (req, res, next) => {
-	const products = Product.getAllProducts();
-
-	res.render('shop', {
-		pageTitle: 'Shop',
-		path: '/',
-		products: products,
-		hasProducts: products.length > 0,
-		activeShop: true,
-		productCSS: true
+const getProducts = async (req, res, next) => {
+	Product.getAllProducts((products) => {
+		res.render('shop', {
+			pageTitle: 'Shop',
+			path: '/',
+			products: products,
+			hasProducts: products.length > 0,
+			activeShop: true,
+			productCSS: true
+		});
 	});
 }
 

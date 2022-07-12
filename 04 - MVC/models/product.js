@@ -1,5 +1,17 @@
-//TODO: move it to the database
-const products = [];
+const fs = require('fs');
+const path = require('path');
+
+const filePath = path.join(__dirname, '..', 'data', 'products.json');
+
+const getProductsFromFile = (callback) => {
+	fs.readFile(filePath, (err, fileContent) => {
+		if (err) {
+			return callback([]);
+		}
+
+		callback(JSON.parse(fileContent.toString()));
+	})
+}
 
 class Product {
 	constructor(title, price, description) {
@@ -9,11 +21,17 @@ class Product {
 	}
 
 	save() {
-		products.push(this);
+		getProductsFromFile((products) => {
+			products.push(this);
+
+			fs.writeFile(filePath, JSON.stringify(products), (err) => {
+				console.log(err)
+			})
+		})
 	}
 
-	static getAllProducts() {
-		return products;
+	static getAllProducts(callback) {
+		getProductsFromFile(callback);
 	}
 }
 
