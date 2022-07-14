@@ -1,1 +1,9 @@
-[{"title":"A Book","imageUrl":"https://www.publicdomainpictures.net/pictures/10000/velka/1-1210009435EGmE.jpg","description":"This is an awesome book!","price":"19"}]
+[
+  {
+    "title": "asd",
+    "imageUrl": "https://www.publicdomainpictures.net/pictures/10000/velka/1-1210009435EGmE.jpg",
+    "description": "asdasdfdr",
+    "price": "12",
+    "id": "2ed8a992-b291-4db7-93c9-d43274e7c981"
+  }
+]
