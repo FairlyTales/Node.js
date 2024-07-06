@@ -11,7 +11,7 @@ const app = express();
 app.set('view engine', 'ejs');
 app.set('views', 'views');
 
-db.execute('SELECT * FROM products').then((res) => console.log(res))
+db.execute('SELECT * FROM products').then((res) => console.log(res));
 
 const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
